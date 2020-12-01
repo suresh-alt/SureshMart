@@ -1,0 +1,27 @@
+{% extends 'common.html' %}
+{% block suresh %}
+    {% include 'customermenu.html' %}
+    <table align="center" border="2">
+    <tr>
+        <th colspan="3" style="text-align: center">Cart Items</th>
+    </tr>
+    <tr>
+        <th>pno</th>
+        <th>pname</th>
+        <th>delete</th>
+    </tr>
+    {% if data != 'csrftoken' %}
+
+    {% for x,y in data.items %}
+        <tr>
+        <th>{{ x }}</th>
+        <th>{{ y }}</th>
+            <th><a href="{% url 'cartdelete' %}?pn={{ x }}"> delete</a></th>
+        </tr>
+        {% endfor %}
+    {% endif %}
+
+</table>
+
+
+{% endblock %}

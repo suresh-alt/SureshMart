@@ -1,0 +1,40 @@
+{% extends 'common.html' %}
+
+{% block suresh %}
+    {% include 'customermenu.html' %}
+     <table align="center" border="2">
+     <tr><th colspan="6" style="text-align: center">Product Details</th></tr>
+      <tr>
+         <th>product no</th>
+         <th>product name</th>
+         <th>product price</th>
+         <th> product quantity</th>
+         <th>product image</th>
+          <th>Add To cart:{{ cdata }} <a href="{% url 'cartview' %}">View</a></th>
+      </tr>
+     {%  for x in data %}
+        <tr>
+        <th>{{ x.pno }}</th>
+        <th>{{ x.pname }}</th>
+        <th>{{ x.price }}</th>
+        <th>{{ x.quantity}}</th>
+            <th><a href="{{ x.pimage.url }}" ><img src="{{ x.pimage.url }}"></a></th>
+            <th><a href="{% url 'cart' %}?no={{ x.pno }}&na={{ x.pname }}"> Addtocart</a></th>
+        </tr>
+         {% endfor %}
+     <tr>
+        {% if data.has_previous %}
+      <th> <a href="{% url 'vpro' %}?pno={{ data.previous_page_number }}">Previous</a></th>
+        {% endif %}
+    {% for x in data.paginator.page_range %}
+        <th><a href="{% url 'vpro' %}?pno={{ x }}"> {{ x }}</a></th>
+    {% endfor %}
+       {% if data.has_next %}
+           <th> <a href="{% url 'vpro' %}?pno={{ data.next_page_number }}">Next</a></th>
+       {% endif %}
+    </tr>
+
+
+     </table>
+
+{% endblock %}

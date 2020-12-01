@@ -1,0 +1,23 @@
+
+{% extends 'common.html' %}
+{% block suresh %}
+    {% include 'adminmenu.html' %}
+    <form action="{% url 'savep' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align="center" border="2">
+    <tr>
+        <th colspan="2">Product Details</th>
+    </tr>
+    {{ form }}
+    <tr>
+        <th colspan="2">
+            <button type="submit">save</button>
+        </th>
+    </tr>
+        {% for x in messages %}
+            <tr>
+            <th  colspan="2" style="text-align: center;color: blue;background-color: yellow">{{ x }}</th>
+            </tr>
+        {% endfor %}
+    </table></form>
+{% endblock %}

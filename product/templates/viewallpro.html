@@ -1,0 +1,31 @@
+{% extends 'common.html' %}
+
+{% block suresh %}
+    {% include 'adminmenu.html' %}
+     <table align="center" border="2">
+     <tr><th colspan="5">Product Details</th></tr>
+      <tr>
+         <th>product no</th>
+         <th>product name</th>
+         <th>product price</th>
+         <th> product quantity</th>
+         <th>product image</th>
+          <th>Update</th>
+          <th>Delete</th>
+      </tr>
+     {%  for x in data %}
+        <tr>
+        <th>{{ x.pno }}</th>
+        <th>{{ x.pname }}</th>
+        <th>{{ x.price }}</th>
+        <th>{{ x.quantity}}</th>
+            <th><a href="{{ x.pimage.url }}" ><img src="{{ x.pimage.url }}"></a></th>
+            <th><a href="{% url 'updatepro' %}?pn={{ x.pno }}"> Yes</a></th>
+            <th><a href="{% url 'delete' %}?pn={{ x.pno }}"> Yes</a></th>
+        </tr>
+
+    {% endfor %}
+     </table>
+
+
+{% endblock %}
